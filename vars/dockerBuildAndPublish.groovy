@@ -3,6 +3,8 @@ import pe.gob.sunat.tecnologiams.arquitectura.jenkins.shared.library.docker.Dock
 void call(script, String dockerImageName, String dockerImageTag, String registryDomain="integracion1-dr-local.artifactory.insi.sunat.peru", String registryPathRepository="microservices",String dockerImageFrom="integracion1-dr-local.artifactory.insi.sunat.peru/jdk/registry.access.redhat.com/ubi8/openjdk-17:1.18-2", String registryCredentialsId="artifactory-credentials"){
   println "docker: build and publish artifactory"
   def dockerfile = libraryResource 'pe/gob/sunat/tecnologiams/arquitectura/jenkins/shared/library/docker/Dockerfile'
+  println "************* Dockerfile ************* "
+  dockerfile = dockerfile.replaceAll(/\$\(DOCKER_IMAGE\)/,dockerImageFrom);
   writeFile(file: "Dockerfile", text: dockerfile, encoding: "UTF-8")
 
   def docker = new DockerUtil(script)

@@ -1,6 +1,6 @@
 {
-    "targetRepo":"calidad1-dr-local",
-    "dockerRepository": "microservices/megaprocesoms-macroproceso-proceso-arquetipo-example1",
-    "tag":"1.0.0-47",
+    "targetRepo":"$(TARGET_REPO_KEY)",
+    "dockerRepository": "$(DOCKER_REPOSITORY)",
+    "tag":"$(TAG)",
     "copy":true
 }

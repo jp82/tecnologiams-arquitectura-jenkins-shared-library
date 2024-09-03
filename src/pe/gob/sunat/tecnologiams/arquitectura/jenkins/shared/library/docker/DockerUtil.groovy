@@ -7,8 +7,8 @@ class DockerUtil implements Serializable {
     }
     def buildAndPublish(String dockerImageName, String dockerImageTag, String registryDomain, String registryPathRepository, String dockerImageFrom, String registryCredentialsId) {
         this.script.withCredentials([this.script.usernamePassword(credentialsId: registryCredentialsId, usernameVariable: 'registryUser', passwordVariable: 'registryPassword')]) {
-            this.script.sh "sed 's/\$(DOCKER_IMAGE)/${dockerImageFrom}/g' Dockerfile > newDockerfile"
-            this.script.sh "mv newDockerfile Dockerfile"
+//            this.script.sh "sed 's/\$(DOCKER_IMAGE)/${dockerImageFrom}/g' Dockerfile > newDockerfile"
+//            this.script.sh "mv newDockerfile Dockerfile"
             this.script.sh "cat Dockerfile"
             this.script.sh "docker login ${registryDomain} -u ${this.script.registryUser} -p ${this.script.registryPassword}"
             this.script.sh "docker build -t ${registryDomain}/${registryPathRepository}/${dockerImageName}:${dockerImageTag} ."
